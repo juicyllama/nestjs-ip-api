@@ -1,6 +1,6 @@
 {
     "name": "@juicyllama/nestjs-ip-api",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "A NestJS app for integrating with IP API",
     "publishConfig": {
         "access": "public",
