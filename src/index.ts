@@ -1,5 +1,5 @@
 //Module
-export { IPAPIModule as AWeberModule } from './ipapi/ipapi.module'
+export { IPAPIModule } from './ipapi/ipapi.module'
 
 //Service
 export { IPAPIService } from './ipapi/ipapi.service'
