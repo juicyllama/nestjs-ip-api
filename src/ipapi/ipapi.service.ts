@@ -20,7 +20,7 @@ export class IPAPIService {
 			)
 			url = `http://ip-api.com/json/${query.ip}`
 		} else {
-			url = `https://ip-api.com/json/${query.ip}?key=${this.configService.get<string>('IP_API_KEY')}`
+			url = `https://pro.ip-api.com/json/${query.ip}?key=${this.configService.get<string>('IP_API_KEY')}`
 		}
 
 		const response = await fetch(url, {
