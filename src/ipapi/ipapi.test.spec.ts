@@ -1,3 +1,4 @@
+import { IPAPIField } from './ipapi.constants'
 import { IPAPIModule } from './ipapi.module'
 import { IPAPIService } from './ipapi.service'
 import { faker } from '@faker-js/faker'
@@ -43,7 +44,10 @@ describe('IP API', () => {
 
 		it('Get IP Data with custom fields', async () => {
 			const ip = faker.internet.ip()
-			const ipdata = await ipapiService.get({ ip, fields: 'status,country,continent' })
+			const ipdata = await ipapiService.get({
+				ip,
+				fields: [IPAPIField.STATUS, IPAPIField.COUNTRY, IPAPIField.CONTINENT],
+			})
 			expect(ipdata).toBeDefined()
 			expect(ipdata.status).toBe('success')
 			expect(ipdata.country).toBeDefined()
@@ -56,7 +60,7 @@ describe('IP API', () => {
 
 		it('Get IP Data with single field', async () => {
 			const ip = faker.internet.ip()
-			const ipdata = await ipapiService.get({ ip, fields: 'country' })
+			const ipdata = await ipapiService.get({ ip, fields: [IPAPIField.COUNTRY] })
 			expect(ipdata).toBeDefined()
 			expect(ipdata.country).toBeDefined()
 

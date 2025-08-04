@@ -11,7 +11,7 @@ export class IPAPIService {
 	constructor(private readonly configService: ConfigService) {}
 
 	async get(query: IPAPIQuery): Promise<IPAPIResponse> {
-		const fields = query.fields || IPAPI_DEFAULT_FIELDS.join(',')
+		const fields = query.fields ? query.fields.join(',') : IPAPI_DEFAULT_FIELDS.join(',')
 		let url: string
 
 		// Note: IP-API.com allows free access without a key, but using a key is recommended for higher rate limits.
