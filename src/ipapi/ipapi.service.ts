@@ -1,3 +1,4 @@
+import { IPAPI_FIELDS } from './ipapi.constants'
 import { IPAPIQuery } from './ipapi.dto'
 import { IPAPIResponse } from './ipapi.types'
 import { Injectable, Logger } from '@nestjs/common'
@@ -10,7 +11,8 @@ export class IPAPIService {
 	constructor(private readonly configService: ConfigService) {}
 
 	async get(query: IPAPIQuery): Promise<IPAPIResponse> {
-		let url
+		let url: string
+		const fields = IPAPI_FIELDS.join(',')
 
 		// Note: IP-API.com allows free access without a key, but using a key is recommended for higher rate limits.
 		// Only paid plans allow for secure HTTPS requests.
@@ -18,9 +20,9 @@ export class IPAPIService {
 			this.logger.warn(
 				`You're using the free version of IP-API.com, which has limited features and rate limits. Consider using a paid plan for better performance.`,
 			)
-			url = `http://ip-api.com/json/${query.ip}`
+			url = `http://ip-api.com/json/${query.ip}?fields=${fields}`
 		} else {
-			url = `https://pro.ip-api.com/json/${query.ip}?key=${this.configService.get<string>('IP_API_KEY')}`
+			url = `https://pro.ip-api.com/json/${query.ip}?key=${this.configService.get<string>('IP_API_KEY')}&fields=${fields}`
 		}
 
 		const response = await fetch(url, {

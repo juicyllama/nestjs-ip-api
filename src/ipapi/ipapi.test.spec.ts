@@ -38,6 +38,8 @@ describe('IP API', () => {
 			expect(ipdata.regionName).toBeDefined()
 			expect(ipdata.zip).toBeDefined()
 			expect(ipdata.isp).toBeDefined()
+			expect(ipdata.continent).toBeDefined()
+			expect(ipdata.continentCode).toBeDefined()
 		})
 	})
 

@@ -1,0 +1,18 @@
+export const IPAPI_FIELDS: readonly string[] = [
+	'query',
+	'status',
+	'country',
+	'countryCode',
+	'continent',
+	'continentCode',
+	'region',
+	'regionName',
+	'city',
+	'zip',
+	'lat',
+	'lon',
+	'timezone',
+	'isp',
+	'org',
+	'as',
+] as const
