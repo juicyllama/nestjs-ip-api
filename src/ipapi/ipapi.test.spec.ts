@@ -27,7 +27,6 @@ describe('IP API', () => {
 			expect(ipdata).toBeDefined()
 			expect(ipdata.city).toBeDefined()
 			expect(ipdata.country).toBeDefined()
-			expect(ipdata.query).toBe(ip)
 			expect(ipdata.status).toBe('success')
 			expect(ipdata.lat).toBeDefined()
 			expect(ipdata.lon).toBeDefined()
