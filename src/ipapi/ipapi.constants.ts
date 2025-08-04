@@ -1,22 +1,3 @@
-export const IPAPI_DEFAULT_FIELDS: readonly string[] = [
-	'query',
-	'status',
-	'country',
-	'countryCode',
-	'continent',
-	'continentCode',
-	'region',
-	'regionName',
-	'city',
-	'zip',
-	'lat',
-	'lon',
-	'timezone',
-	'isp',
-	'org',
-	'as',
-] as const
-
 export enum IPAPIField {
 	STATUS = 'status',
 	MESSAGE = 'message',
@@ -44,3 +25,22 @@ export enum IPAPIField {
 	HOSTING = 'hosting',
 	QUERY = 'query',
 }
+
+export const IPAPI_DEFAULT_FIELDS: readonly IPAPIField[] = [
+	IPAPIField.QUERY,
+	IPAPIField.STATUS,
+	IPAPIField.COUNTRY,
+	IPAPIField.COUNTRY_CODE,
+	IPAPIField.CONTINENT,
+	IPAPIField.CONTINENT_CODE,
+	IPAPIField.REGION,
+	IPAPIField.REGION_NAME,
+	IPAPIField.CITY,
+	IPAPIField.ZIP,
+	IPAPIField.LAT,
+	IPAPIField.LON,
+	IPAPIField.TIMEZONE,
+	IPAPIField.ISP,
+	IPAPIField.ORG,
+	IPAPIField.AS,
+] as const
