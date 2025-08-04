@@ -1,4 +1,4 @@
-export const IPAPI_FIELDS: readonly string[] = [
+export const IPAPI_DEFAULT_FIELDS: readonly string[] = [
 	'query',
 	'status',
 	'country',
@@ -15,4 +15,32 @@ export const IPAPI_FIELDS: readonly string[] = [
 	'isp',
 	'org',
 	'as',
+] as const
+
+export const VALID_FIELDS: readonly string[] = [
+	'status',
+	'message',
+	'continent',
+	'continentCode',
+	'country',
+	'countryCode',
+	'region',
+	'regionName',
+	'city',
+	'district',
+	'zip',
+	'lat',
+	'lon',
+	'timezone',
+	'offset',
+	'currency',
+	'isp',
+	'org',
+	'as',
+	'asname',
+	'reverse',
+	'mobile',
+	'proxy',
+	'hosting',
+	'query',
 ] as const
