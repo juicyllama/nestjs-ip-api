@@ -1,3 +1,4 @@
+import { IPAPIQuery } from '../ipapi/ipapi.dto'
 import { IPAPIService } from '../ipapi/ipapi.service'
 import { IPAPIResponse } from '../ipapi/ipapi.types'
 import { faker } from '@faker-js/faker'
@@ -9,11 +10,11 @@ export class SandboxService {
 
 	constructor(private readonly ipapiService: IPAPIService) {}
 
-	async run(): Promise<IPAPIResponse> {
+	async run(query: IPAPIQuery): Promise<IPAPIResponse> {
 		this.logger.log('Running sandbox service...')
-		// Generate a random IP address for testing
-		const ip = faker.internet.ip()
-		const ipInfo = await this.ipapiService.get({ ip })
+		// Use provided IP or generate random one for testing
+		const ip = query.ip || faker.internet.ip()
+		const ipInfo = await this.ipapiService.get({ ip, fields: query.fields })
 		this.logger.log(`IP Info for ${ip}:`, ipInfo)
 		return ipInfo
 	}

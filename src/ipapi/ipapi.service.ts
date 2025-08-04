@@ -12,7 +12,7 @@ export class IPAPIService {
 
 	async get(query: IPAPIQuery): Promise<IPAPIResponse> {
 		let url: string
-		const fields = IPAPI_FIELDS.join(',')
+		const fields = query.fields || IPAPI_FIELDS.join(',')
 
 		// Note: IP-API.com allows free access without a key, but using a key is recommended for higher rate limits.
 		// Only paid plans allow for secure HTTPS requests.
