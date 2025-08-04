@@ -3,6 +3,8 @@ export type IPAPIResponse = {
 	status: 'success' | 'fail'
 	country: string
 	countryCode: string
+	continent: string
+	continentCode: string
 	region: string
 	regionName: string
 	city: string

@@ -1,3 +1,4 @@
+import { IPAPIField } from './ipapi.constants'
 import { IPAPIModule } from './ipapi.module'
 import { IPAPIService } from './ipapi.service'
 import { faker } from '@faker-js/faker'
@@ -21,13 +22,12 @@ describe('IP API', () => {
 	})
 
 	describe('Get', () => {
-		it('Get IP Data', async () => {
+		it('Get IP Data with default fields', async () => {
 			const ip = faker.internet.ip()
 			const ipdata = await ipapiService.get({ ip })
 			expect(ipdata).toBeDefined()
 			expect(ipdata.city).toBeDefined()
 			expect(ipdata.country).toBeDefined()
-			expect(ipdata.query).toBe(ip)
 			expect(ipdata.status).toBe('success')
 			expect(ipdata.lat).toBeDefined()
 			expect(ipdata.lon).toBeDefined()
@@ -38,6 +38,35 @@ describe('IP API', () => {
 			expect(ipdata.regionName).toBeDefined()
 			expect(ipdata.zip).toBeDefined()
 			expect(ipdata.isp).toBeDefined()
+			expect(ipdata.continent).toBeDefined()
+			expect(ipdata.continentCode).toBeDefined()
+		})
+
+		it('Get IP Data with custom fields', async () => {
+			const ip = faker.internet.ip()
+			const ipdata = await ipapiService.get({
+				ip,
+				fields: [IPAPIField.STATUS, IPAPIField.COUNTRY, IPAPIField.CONTINENT],
+			})
+			expect(ipdata).toBeDefined()
+			expect(ipdata.status).toBe('success')
+			expect(ipdata.country).toBeDefined()
+			expect(ipdata.continent).toBeDefined()
+
+			//* These fields should not be present as they are not requested
+			expect(ipdata.city).toBeUndefined()
+			expect(ipdata.lat).toBeUndefined()
+		})
+
+		it('Get IP Data with single field', async () => {
+			const ip = faker.internet.ip()
+			const ipdata = await ipapiService.get({ ip, fields: [IPAPIField.COUNTRY] })
+			expect(ipdata).toBeDefined()
+			expect(ipdata.country).toBeDefined()
+
+			//* These fields should not be present as they are not requested
+			expect(ipdata.city).toBeUndefined()
+			expect(ipdata.status).toBeUndefined()
 		})
 	})
 
